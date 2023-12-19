@@ -18,8 +18,8 @@ states <- sf::st_read("/home/a/data/background/CUS/CUS.shp") %>%
 
 # prism climate analysis ============================================================
 
-if(!file.exists("data/time_series.rda"))
-  {ppt_files <- list.files("data/prism/ppt/PRISM_ppt_stable_4kmM3_198101_202303_bil/", 
+if(!file.exists("data/time_series.rda")){
+  ppt_files <- list.files("data/prism/ppt/PRISM_ppt_stable_4kmM3_198101_202303_bil/", 
                           pattern = "bil.bil$", full.names = TRUE)
   vpd_files <- list.files("data/prism/vpdmin/PRISM_vpdmin_stable_4kmM3_198101_202302_bil/",
                           pattern = "bil.bil$", full.names = TRUE)

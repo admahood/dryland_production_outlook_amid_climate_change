@@ -4,7 +4,7 @@ invisible(sapply(c("tidyverse", "sf"),
 
 
 #map figure ============
-
+if(!file.exists("data/gpkgs.rda")){
 gp <- st_read("/home/a/data/background/ecoregions/cec/us_eco_l3.shp") %>% 
   filter(str_sub(L2_KEY, 1,3) %in% c("9.4", "9.3")) %>%
   mutate(region = "Semi-Arid Great Plains")
@@ -22,7 +22,9 @@ states <- sf::st_read("/home/a/data/background/CUS/CUS.shp") %>%
   dplyr::filter(STUSPS %in% c("MT", "WY", "CO", "UT", "NM", "AZ",
                               "TX", "OK", "KS", "NE", "SD", "ND")) %>%
   dplyr::mutate(region = ifelse(STUSPS %in% c("MT", "WY", "CO", "UT", "NM", "AZ"),
-                                "Mountain Region", "Central Region"))
+                                "Mountain Region", "Central Region"))}else{
+                                  load("data/gpkgs.rda")
+                                }
 
 p <- ggplot(states, aes(fill = region)) +
   geom_sf(color = "black") +
